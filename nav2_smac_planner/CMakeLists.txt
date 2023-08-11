@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.8)
 project(nav2_smac_planner)
 
 set(CMAKE_BUILD_TYPE Release) #Debug, Release
@@ -86,7 +86,12 @@ add_library(${library_name} SHARED
   src/node_basic.cpp
 )
 
-target_link_libraries(${library_name} Eigen3::Eigen ompl::ompl ${OpenMP_LIBRARIES}  OpenMP::OpenMP_CXX)
+target_link_libraries(${library_name}
+  Eigen3::Eigen
+  $<IF:$<TARGET_EXISTS:ompl::ompl>:ompl::ompl:${OMPL_LIBRARIES}>
+  ${OpenMP_LIBRARIES}
+  OpenMP::OpenMP_CXX
+)
 
 ament_target_dependencies(${library_name}
   ${dependencies}
