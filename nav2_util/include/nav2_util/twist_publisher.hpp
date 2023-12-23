@@ -109,6 +109,26 @@ public:
     }
   }
 
+  void publish(std::unique_ptr<geometry_msgs::msg::TwistStamped> velocity)
+  {
+    (void) velocity;
+    // if (is_stamped_) {
+    //   twist_stamped_pub_->publish(velocity);
+    // } else {
+    //   twist_pub_->publish(velocity->twist);
+    // }
+  }
+
+  // template <typename T>
+  // void publish(T velocity)
+  // {
+  //   if (is_stamped_) {
+  //     twist_stamped_pub_->publish(velocity);
+  //   } else {
+  //     twist_pub_->publish(velocity.twist);
+  //   }
+  // }
+
   [[nodiscard]] size_t get_subscription_count() const
   {
     if (is_stamped_) {
