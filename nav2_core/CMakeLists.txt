@@ -5,7 +5,7 @@ find_package(ament_cmake REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav2_behavior_tree REQUIRED)
 find_package(nav2_common REQUIRED)
-find_package(nav2_costmap_2d REQUIRED)
+#find_package(nav2_costmap_2d REQUIRED)
 find_package(nav2_util REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(pluginlib REQUIRED)
@@ -24,8 +24,8 @@ target_include_directories(nav2_core
 target_link_libraries(nav2_core INTERFACE
   ${geometry_msgs_TARGETS}
   nav2_behavior_tree::nav2_behavior_tree
-  nav2_costmap_2d::nav2_costmap_2d_core
-  nav2_costmap_2d::nav2_costmap_2d_client
+  #nav2_costmap_2d::nav2_costmap_2d_core
+  #nav2_costmap_2d::nav2_costmap_2d_client
   nav2_util::nav2_util_core
   ${nav_msgs_TARGETS}
   pluginlib::pluginlib
@@ -56,7 +56,7 @@ ament_export_include_directories(include/${PROJECT_NAME})
 ament_export_dependencies(
   geometry_msgs
   nav2_behavior_tree
-  nav2_costmap_2d
+  #nav2_costmap_2d
   nav2_util
   nav_msgs
   pluginlib

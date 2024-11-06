@@ -23,6 +23,7 @@
 #include "nav_msgs/msg/path.hpp"
 #include "geometry_msgs/msg/pose_stamped.hpp"
 #include "nav2_util/lifecycle_node.hpp"
+#include "environment_model.hpp"
 
 namespace nav2_core
 {
@@ -31,6 +32,7 @@ namespace nav2_core
  * @class GlobalPlanner
  * @brief Abstract interface for global planners to adhere to with pluginlib
  */
+template<typename LocationType>
 class GlobalPlanner
 {
 public:
@@ -47,10 +49,11 @@ public:
    * @param  tf A pointer to a TF buffer
    * @param  costmap_ros A pointer to the costmap
    */
+  template<typename LocationType>
   virtual void configure(
     const rclcpp_lifecycle::LifecycleNode::WeakPtr & parent,
     std::string name, std::shared_ptr<tf2_ros::Buffer> tf,
-    std::shared_ptr<nav2_costmap_2d::Costmap2DROS> costmap_ros) = 0;
+    std::shared_ptr<EnvironmentModel<LocationType> environment_model) = 0;
 
   /**
    * @brief Method to cleanup resources used on shutdown.
