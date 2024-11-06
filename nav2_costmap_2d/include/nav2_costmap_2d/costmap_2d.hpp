@@ -49,6 +49,7 @@
 #include <mutex>
 #include "geometry_msgs/msg/point.hpp"
 #include "nav_msgs/msg/occupancy_grid.hpp"
+#include "nav2_core/environment_model.hpp"
 
 namespace nav2_costmap_2d
 {
@@ -64,7 +65,7 @@ struct MapLocation
  * @class Costmap2D
  * @brief A 2D costmap provides a mapping between points in the world and their associated "costs".
  */
-class Costmap2D
+class Costmap2D : public nav2_core::EnvironmentModel<MapLocation, unsigned char>
 {
   friend class CostmapTester;  // Need this for gtest to work correctly
 
@@ -147,6 +148,15 @@ public:
    * @return The cost of the cell
    */
   unsigned char getCost(unsigned int mx, unsigned int my) const;
+
+  /**
+   * @brief  Get the cost of a cell in the costmap
+   * @param mx The cell coordinates
+   * @return The cost of the cell
+   */
+  unsigned char getCost(const MapLocation& loc) const override {
+    return getCost(loc.x, loc.y);
+  }
 
   /**
    * @brief  Get the cost of a cell in the costmap

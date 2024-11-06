@@ -8,6 +8,7 @@ find_package(laser_geometry REQUIRED)
 find_package(map_msgs REQUIRED)
 find_package(message_filters REQUIRED)
 find_package(nav2_common REQUIRED)
+find_package(nav2_core REQUIRED)
 find_package(nav2_msgs REQUIRED)
 find_package(nav2_util REQUIRED)
 find_package(nav2_voxel_grid REQUIRED)
@@ -51,6 +52,7 @@ target_link_libraries(nav2_costmap_2d_core PUBLIC
   ${map_msgs_TARGETS}
   ${nav_msgs_TARGETS}
   ${nav2_msgs_TARGETS}
+  nav2_core::nav2_core
   nav2_util::nav2_util_core
   pluginlib::pluginlib
   ${std_srvs_TARGETS}
